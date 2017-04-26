@@ -1,0 +1,14 @@
+.app-notification {
+  position: fixed;
+  width: 100vw;
+  text-align: center;
+  border-radius: 0;
+}
+
+.isTop {
+  top: 0;
+}
+
+.isBottom {
+  bottom: 0;
+}

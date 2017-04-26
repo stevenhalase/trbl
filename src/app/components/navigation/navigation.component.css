@@ -1,0 +1,10 @@
+.app-navigation {
+  position: fixed;
+  top: 0;
+  width: 100vw;
+}
+
+.app-navigation .nav-logo {
+  font-size: 36px;
+  font-family: 'Permanent Marker', cursive;
+}

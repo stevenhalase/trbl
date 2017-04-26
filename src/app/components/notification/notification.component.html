@@ -1,0 +1,6 @@
+<div class="notification app-notification" 
+  [ngClass]="{'isTop': position === 'top', 'isBottom': position === 'bottom'}"
+  *ngIf="this.showNotification">
+  <button class="delete" (click)="this.showNotification = false"></button>
+  {{this.message}}
+</div>

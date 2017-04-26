@@ -1,0 +1,33 @@
+<div class="app-navigation">
+  <nav class="nav has-shadow">
+    <div class="container">
+      <div class="nav-left">
+        <a class="nav-item">
+          <span class="nav-logo">TRBL.</span>
+        </a>
+        <a class="nav-item is-tab is-hidden-mobile is-active">Home</a>
+        <a class="nav-item is-tab is-hidden-mobile">About</a>
+        <a class="nav-item is-tab is-hidden-mobile">Contact</a>
+      </div>
+      <span class="nav-toggle" (click)="this.showMenu = !this.showMenu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </span>
+      <div class="nav-right nav-menu" [ngClass]="{'is-active': this.showMenu}">
+        <a class="nav-item is-tab is-hidden-tablet is-active">Test</a>
+        <a class="nav-item is-tab is-hidden-tablet">About</a>
+        <a class="nav-item is-tab is-hidden-tablet">Contact</a>
+        <a class="nav-item is-tab">
+          <figure class="image is-16x16" style="margin-right: 8px;" *ngIf="apiService.user.ProfileImage !== ''">
+            <img src="{{apiService.user.ProfileImage}}">
+          </figure>
+          {{apiService.user.Alias}}
+        </a>
+        <a class="nav-item is-tab" (click)="authService.login()" *ngIf="!authService.authenticated()">Sign In</a>
+        <a class="nav-item is-tab" (click)="authService.logout()" *ngIf="authService.authenticated()">Sign Out</a>
+      </div>
+    </div>
+  </nav>
+  <!--<app-sign-in [showSignIn]="this.showSignIn"></app-sign-in>-->
+</div>

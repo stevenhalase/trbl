@@ -1,0 +1,24 @@
+<div class="app-sign-up">
+  <div class="level" *ngIf="this.submitted === false">
+    <div class="level-item">
+      <a class="button is-primary is-inverted is-outlined" (click)="showSignup = true" *ngIf="!showSignup">Sign Up</a>
+      <div class="field" *ngIf="showSignup">
+        <p class="control has-icons-left has-icons-right">
+          <input class="input" type="email" placeholder="Email" [(ngModel)]="this.emailAddress">
+          <span class="icon is-small is-left">
+            <i class="fa fa-envelope"></i>
+          </span>
+          <span class="icon is-small is-right">
+            <i class="fa fa-check" [ngClass]="{'is-valid': isValidEmail(this.emailAddress)}"></i>
+          </span>
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="level" *ngIf="this.submitted === false">
+    <div class="level-item">
+      <a class="button is-primary is-inverted is-outlined" *ngIf="isValidEmail(this.emailAddress)" (click)="submit()">Submit</a>
+    </div>
+  </div>
+  <app-notification *ngIf="this.submitted" [position]="this.notificationPosition" [message]="this.notificationMessage"></app-notification>
+</div>
