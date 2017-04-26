@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { tokenNotExpired } from 'angular2-jwt';
-import { Router } from '@angular/router';
 import { Subject }    from 'rxjs/Subject';
+import { Router } from '@angular/router';
 
 declare var Auth0Lock;
 
@@ -54,6 +54,7 @@ export class AuthService {
       localStorage.removeItem('id_token');
       localStorage.removeItem('profile');
       this.userLogoutSource.next();
+      this.router.navigate(['/home']);
     }
 
 }

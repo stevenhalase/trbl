@@ -1,0 +1,66 @@
+<div class="app-profile-form">
+  <div class="level">
+    <div class="level-item">
+      <p class="title is-2">Profile</p>
+    </div>
+    <div class="level-item">
+      <p class="control save-btn" (click)="doSomthing()">
+        <a class="button is-primary is-medium">
+          Save changes
+        </a>
+      </p>
+    </div>
+  </div>
+  <div class="field is-inverted is-outlined">
+    <label class="label">User Name</label>
+    <p class="control">
+      <input class="input" type="text" [(ngModel)]="apiService.user.Alias">
+    </p>
+  </div>
+  <div class="field">
+    <label class="label">First Name</label>
+    <p class="control">
+      <input class="input" type="text" [(ngModel)]="apiService.user.FirstName">
+    </p>
+  </div>
+  <div class="field">
+    <label class="label">Last Name</label>
+    <p class="control">
+      <input class="input" type="text" [(ngModel)]="apiService.user.LastName">
+    </p>
+  </div>
+  <div class="field">
+    <label class="label">Age</label>
+    <p class="control">
+      <input class="input" type="number" [(ngModel)]="apiService.user.Age">
+    </p>
+  </div>
+  <div class="field">
+    <label class="label">Birth Date</label>
+    <p class="control">
+      <input class="input" type="date" [(ngModel)]="apiService.user.BirthDate">
+    </p>
+  </div>
+  <div class="field">
+    <label class="label">Profile Image</label>
+    <p class="control">
+      <input class="input" type="url" [(ngModel)]="apiService.user.ProfileImage">
+    </p>
+  </div>
+  <div class="field">
+    <label class="label">Cover Image</label>
+    <p class="control">
+      <input class="input" type="url" [(ngModel)]="apiService.user.CoverImage">
+    </p>
+  </div>
+  <div class="field has-addons">
+    <p class="control">
+      <input class="input" type="text" placeholder="Location">
+    </p>
+    <p class="control">
+      <a class="button is-info">
+        Use My Location
+      </a>
+    </p>
+  </div>
+</div>

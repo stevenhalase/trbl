@@ -5,7 +5,7 @@
         <a class="nav-item">
           <span class="nav-logo">TRBL.</span>
         </a>
-        <a class="nav-item is-tab is-hidden-mobile is-active">Home</a>
+        <a class="nav-item is-tab is-hidden-mobile" routerLink="/home" routerLinkActive="is-active">Home</a>
         <a class="nav-item is-tab is-hidden-mobile">About</a>
         <a class="nav-item is-tab is-hidden-mobile">Contact</a>
       </div>
@@ -18,7 +18,7 @@
         <a class="nav-item is-tab is-hidden-tablet is-active">Test</a>
         <a class="nav-item is-tab is-hidden-tablet">About</a>
         <a class="nav-item is-tab is-hidden-tablet">Contact</a>
-        <a class="nav-item is-tab">
+        <a class="nav-item is-tab" routerLink="/profile" routerLinkActive="is-active">
           <figure class="image is-16x16" style="margin-right: 8px;" *ngIf="apiService.user.ProfileImage !== ''">
             <img src="{{apiService.user.ProfileImage}}">
           </figure>

@@ -1,0 +1,12 @@
+.app-profile-form {
+  width: 90vw;
+  height: calc(100vh - 52px);
+  margin-top: 52px;
+  background-color: #FFF;
+  padding: 75px 20px 20px 20px;
+}
+
+.app-profile-form .level {
+  margin-bottom: 50px;
+  text-align: center;
+}

@@ -13,6 +13,9 @@ import { NotificationComponent } from './components/notification/notification.co
 import { SignInComponent } from './components/sign-in/sign-in.component';
 import { NavigationComponent } from './components/navigation/navigation.component';
 import { Routing, AppRoutingProviders } from './app.routes';
+import { ProfileComponent } from './profile/profile.component';
+import { FeedComponent } from './components/feed/feed.component';
+import { ProfileFormComponent } from './components/profile-form/profile-form.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +25,10 @@ import { Routing, AppRoutingProviders } from './app.routes';
     NotificationComponent,
     SignInComponent,
     NavigationComponent,
-    HomeComponent
+    HomeComponent,
+    ProfileComponent,
+    FeedComponent,
+    ProfileFormComponent
   ],
   imports: [
     BrowserModule,
