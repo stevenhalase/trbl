@@ -9,3 +9,16 @@
   font-size: 36px;
   font-family: 'Permanent Marker', cursive;
 }
+
+.app-navigation .nav-left {
+  overflow: hidden;
+}
+
+.app-navigation .profile-image img {
+  max-height: 2.4rem;
+  border-radius: 50%;
+}
+
+.app-navigation .profile-image-item {
+  line-height: 0;
+}

@@ -1,5 +1,13 @@
 <div class="app-home">
   <app-navigation></app-navigation>
-  <app-logo></app-logo>
-  <app-sign-up></app-sign-up>
+  <div *ngIf="!authService.authenticated()">
+    <app-logo></app-logo>
+    <app-sign-up></app-sign-up>
+  </div>
+  <div *ngIf="authService.authenticated()">
+    <div class="feed-container">
+      <app-post></app-post>
+      <app-feed></app-feed>
+    </div>
+  </div>
 </div>

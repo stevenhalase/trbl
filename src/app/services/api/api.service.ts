@@ -3,36 +3,53 @@ import { Http, Response }          from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
+import { Subject }    from 'rxjs/Subject';
 
 import { User } from '../../helpers/user-helper';
+import { Location } from '../../helpers/location-helper';
+import { FeedPost } from '../../helpers/feedPost-helper';
 import { AuthService } from '../auth/auth.service';
 
 @Injectable()
 export class APIService {
 
   private apiUrl = 'http://localhost:8080';
-  public user:User = new User('','','','',0,new Date(),{},'','')
+  public user:User = new User('', '','','','',0,new Date(), new Location(0,0),'','')
+
+  private userUpdateSource = new Subject<User>();
+  userUpdate$ = this.userUpdateSource.asObservable();
+
+  private addedPostSource = new Subject<any>();
+  addedPost$ = this.addedPostSource.asObservable();
 
   constructor(private http: Http, private authService:AuthService) {
     this.authService.userLogin$.subscribe(localUser => {
-      this.user = new User(localUser.user_id, localUser.name, '', '', 0, new Date(), {}, localUser.picture, '');
+      this.user = new User('', localUser.user_id, localUser.name, '', '', 0, new Date(), new Location(0,0), localUser.picture, '');
       this.getUser(localUser.user_id).subscribe(returnUser => {
         if (!returnUser._id) {
           this.createUser(this.user).subscribe(savedUser => {
             this.user = savedUser;
+            this.userUpdateSource.next(this.user);
           })
         } else {
           this.user = returnUser;
+          this.userUpdateSource.next(this.user);
         }
       })
     });
     this.authService.userLogout$.subscribe(() => {
-      this.user = new User('','','','',0,new Date(),{},'','')
+      this.user = new User('', '','','','',0,new Date(), new Location(0,0),'','')
     });
   }
 
-  getUser(userID:string): Observable<User> {
+  getUser(userID:String): Observable<User> {
     return this.http.get(this.apiUrl + '/users/' + userID)
+                    .map(this.extractData)
+                    .catch(this.handleError);
+  }
+
+  getUserById(userID:String): Observable<User> {
+    return this.http.get(this.apiUrl + '/users/id/' + userID)
                     .map(this.extractData)
                     .catch(this.handleError);
   }
@@ -43,10 +60,35 @@ export class APIService {
                     .catch(this.handleError);
   }
 
+  updateUser(userID:String, user:User): Observable<User> {
+    return this.http.put(this.apiUrl + '/users/' + userID, user)
+                    .map(this.extractData)
+                    .catch(this.handleError);
+  }
+
+  getFeedPosts(): Observable<FeedPost[]> {
+    return this.http.get(this.apiUrl + '/feedposts')
+                    .map(this.extractData)
+                    .catch(this.handleError);
+  }
+
+  createFeedPost(feedPost:FeedPost): Observable<FeedPost> {
+    return this.http.post(this.apiUrl + '/feedposts/', feedPost)
+                    .map(this.extractFeedData, this)
+                    .catch(this.handleError)
+  }
+
   private extractData(res: Response) {
     let body = res.json();
     return body || { };
   }
+
+  private extractFeedData(res: Response) {
+    this.addedPostSource.next();
+    let body = res.json();
+    return body || { };
+  }
+
 
   private handleError (error: Response | any) {
     // In a real world app, you might use a remote logging infrastructure

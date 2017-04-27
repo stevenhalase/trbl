@@ -2,12 +2,14 @@
   <nav class="nav has-shadow">
     <div class="container">
       <div class="nav-left">
-        <a class="nav-item">
-          <span class="nav-logo">TRBL.</span>
-        </a>
         <a class="nav-item is-tab is-hidden-mobile" routerLink="/home" routerLinkActive="is-active">Home</a>
         <a class="nav-item is-tab is-hidden-mobile">About</a>
         <a class="nav-item is-tab is-hidden-mobile">Contact</a>
+      </div>
+      <div class="nav-center">
+        <a class="nav-item">
+          <span class="nav-logo">TRBL.</span>
+        </a>
       </div>
       <span class="nav-toggle" (click)="this.showMenu = !this.showMenu">
         <span></span>
@@ -18,11 +20,10 @@
         <a class="nav-item is-tab is-hidden-tablet is-active">Test</a>
         <a class="nav-item is-tab is-hidden-tablet">About</a>
         <a class="nav-item is-tab is-hidden-tablet">Contact</a>
-        <a class="nav-item is-tab" routerLink="/profile" routerLinkActive="is-active">
-          <figure class="image is-16x16" style="margin-right: 8px;" *ngIf="apiService.user.ProfileImage !== ''">
+        <a class="nav-item is-tab profile-image-item" routerLink="/profile" routerLinkActive="is-active">
+          <figure class="profile-image" *ngIf="apiService.user.ProfileImage !== ''">
             <img src="{{apiService.user.ProfileImage}}">
           </figure>
-          {{apiService.user.Alias}}
         </a>
         <a class="nav-item is-tab" (click)="authService.login()" *ngIf="!authService.authenticated()">Sign In</a>
         <a class="nav-item is-tab" (click)="authService.logout()" *ngIf="authService.authenticated()">Sign Out</a>

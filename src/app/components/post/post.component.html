@@ -1,0 +1,33 @@
+<div class="app-post">
+  <div class="card" (mouseover)="this.postSelected = true" (mouseleave)="this.postSelected = false">
+    <div class="card-content" [ngClass]="{'post-selected': this.postSelected}">
+      <div class="media">
+        <div class="media-left">
+          <figure class="image is-48x48">
+            <img src="{{apiService.user.ProfileImage}}" alt="Image">
+          </figure>
+        </div>
+        <div class="media-content">
+          <p class="title is-4">{{apiService.user.FirstName}} {{apiService.user.LastName}}</p>
+          <p class="subtitle is-6">{{apiService.user.Alias}}</p>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="title-field field">
+          <p class="control">
+            <input class="input is-small" type="text" placeholder="Post Title" [(ngModel)]="this.feedPost.Title">
+          </p>
+        </div>
+        <div class="field">
+          <p class="control">
+            <textarea class="textarea" placeholder="Want to share something?" [(ngModel)]="this.feedPost.Content"></textarea>
+          </p>
+        </div>
+      </div>
+      <div class="post-submit-container">
+        <a class="button is-primary" (click)="submitPost()">Post</a>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,9 +1,11 @@
-import { APIService } from './services/api/api.service';
-import { AuthService } from './services/auth/auth.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+
+import { APIService } from './services/api/api.service';
+import { AuthService } from './services/auth/auth.service';
+import { LocationService } from './services/location/location.service';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -16,6 +18,7 @@ import { Routing, AppRoutingProviders } from './app.routes';
 import { ProfileComponent } from './profile/profile.component';
 import { FeedComponent } from './components/feed/feed.component';
 import { ProfileFormComponent } from './components/profile-form/profile-form.component';
+import { PostComponent } from './components/post/post.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +31,8 @@ import { ProfileFormComponent } from './components/profile-form/profile-form.com
     HomeComponent,
     ProfileComponent,
     FeedComponent,
-    ProfileFormComponent
+    ProfileFormComponent,
+    PostComponent
   ],
   imports: [
     BrowserModule,
@@ -39,6 +43,7 @@ import { ProfileFormComponent } from './components/profile-form/profile-form.com
   providers: [
     APIService,
     AuthService,
+    LocationService,
     AppRoutingProviders
   ],
   bootstrap: [AppComponent]

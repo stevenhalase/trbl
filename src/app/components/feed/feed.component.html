@@ -1,3 +1,34 @@
-<p>
-  feed works!
-</p>
+<div class="app-feed">
+  <div class="feed-container">
+    <div class="card" *ngFor="let feedPost of this.feedPosts">
+      <div class="card-content">
+        <div class="media">
+          <div class="media-left">
+            <figure class="image is-48x48">
+              <img src="{{feedPost.User.ProfileImage}}" alt="Image">
+            </figure>
+          </div>
+          <div class="media-content">
+            <p class="title is-4">{{feedPost.User.FirstName}} {{feedPost.User.LastName}}</p>
+            <p class="subtitle is-6">{{feedPost.User.Alias}}</p>
+          </div>
+        </div>
+        <div class="content">
+          {{feedPost.Content}}
+        </div>
+        <footer class="card-footer">
+          <div class="content">
+            <div class="level">
+              <div class="level-item">
+                <small>{{feedPost.Date | date:'medium'}}</small>
+              </div>
+              <div class="level-item">
+                <small>{{feedPost.Location.City}}, {{feedPost.Location.State}}</small>
+              </div>
+            </div>
+          </div>
+        </footer>
+      </div>
+    </div>
+  </div>
+</div>

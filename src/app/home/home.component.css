@@ -10,3 +10,9 @@
   font-family: 'Roboto', sans-serif;
   align-items: center;
 }
+
+.app-home .feed-container {
+  width: 50vw;
+  height: calc(100vh - 52px);
+  margin-top: 82px;
+}

@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
+import { APIService } from '../../services/api/api.service';
+import { FeedPost } from '../../helpers/feedPost-helper';
+
 @Component({
   selector: 'app-feed',
   templateUrl: './feed.component.html',
@@ -7,9 +10,32 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FeedComponent implements OnInit {
 
-  constructor() { }
+  public feedPosts: Array<FeedPost>;
+
+  constructor(private apiService:APIService) { 
+    this.getFeedPosts();
+
+    this.apiService.addedPost$.subscribe(() => {
+      this.getFeedPosts();
+    })
+  }
 
   ngOnInit() {
+  }
+
+  getFeedPosts() {
+    this.apiService.getFeedPosts().subscribe(returnFeedPosts => {
+      this.feedPosts = returnFeedPosts;
+      this.expandUserData();
+    })
+  }
+
+  expandUserData() {
+    for (let feedPost of this.feedPosts) {
+      this.apiService.getUserById(feedPost.User.toString()).subscribe(returnUser => {
+        feedPost.User = returnUser;
+      })
+    }
   }
 
 }

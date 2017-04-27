@@ -1,0 +1,42 @@
+.app-post {
+
+}
+
+.app-post .textarea {
+  resize: none;
+
+  min-height: 46px;
+  background-color: #F5F5F5;
+  transition: all .25s ease-in-out;
+}
+
+.app-post .title-field {
+  overflow: hidden;
+  max-height: 0;
+  transition: all .25s ease-in-out;
+}
+
+.app-post .post-submit-container {
+  display: flex;
+  justify-content: flex-end;
+
+  overflow: hidden;
+  max-height: 0;
+  transition: all .25s ease-in-out;
+}
+
+.app-post .post-selected .textarea{
+  min-height: 120px;
+  background-color: #FFF;
+  transition: all .25s ease-in-out;
+}
+
+.app-post .post-selected .title-field{
+  max-height: 40px;
+  transition: all .25s ease-in-out;
+}
+
+.app-post .post-selected .post-submit-container{
+  max-height: 40px;
+  transition: all .25s ease-in-out;
+}
