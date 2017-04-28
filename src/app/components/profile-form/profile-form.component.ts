@@ -12,7 +12,7 @@ export class ProfileFormComponent implements OnInit {
 
   public gettingLocation:Boolean = false;
   public savingProfile:Boolean = false;
-  constructor(private apiService:APIService, private locationService:LocationService) {
+  constructor(public apiService:APIService, public locationService:LocationService) {
   }
 
   ngOnInit() {

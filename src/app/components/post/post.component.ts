@@ -15,11 +15,11 @@ export class PostComponent implements OnInit {
 
   public submittingPost:Boolean = false;
   public leaveTimer:any;
-  private postSelected:Boolean = false;
-  private location:Location = new Location(0,0,'','');
-  private feedPost:FeedPost = new FeedPost(new Date(), this.apiService.user, new Location(0,0), '', '', [], [], []);
+  public postSelected:Boolean = false;
+  public location:Location = new Location(0,0,'','');
+  public feedPost:FeedPost = new FeedPost(new Date(), this.apiService.user, new Location(0,0), '', '', [], [], []);
 
-  constructor(private apiService:APIService, private locationService:LocationService) {
+  constructor(public apiService:APIService, public locationService:LocationService) {
     this.apiService.userUpdate$.subscribe(updatedUser => {
       this.feedPost.User = updatedUser;
     })

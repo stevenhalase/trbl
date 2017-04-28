@@ -10,7 +10,7 @@ import { NotificationComponent } from '../notification/notification.component';
 })
 export class SignUpComponent implements OnInit {
 
-  constructor(private authService:AuthService) { }
+  constructor(public authService:AuthService) { }
 
   ngOnInit() {
   }

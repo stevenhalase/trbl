@@ -13,16 +13,16 @@ import { AuthService } from '../auth/auth.service';
 @Injectable()
 export class APIService {
 
-  private apiUrl = 'http://localhost:8080';
+  public apiUrl = 'http://localhost:8080';
   public user:User = new User('', '','','','',0,new Date(), new Location(0,0),'','')
 
-  private userUpdateSource = new Subject<User>();
+  public userUpdateSource = new Subject<User>();
   userUpdate$ = this.userUpdateSource.asObservable();
 
-  private addedPostSource = new Subject<any>();
+  public addedPostSource = new Subject<any>();
   addedPost$ = this.addedPostSource.asObservable();
 
-  constructor(private http: Http, private authService:AuthService) {
+  constructor(public http: Http, public authService:AuthService) {
     this.authService.userUpdateLocal$.subscribe(user => {
       this.user = user;
     })
@@ -84,19 +84,19 @@ export class APIService {
                     .catch(this.handleError)
   }
 
-  private extractData(res: Response) {
+  public extractData(res: Response) {
     let body = res.json();
     return body || { };
   }
 
-  private extractFeedData(res: Response) {
+  public extractFeedData(res: Response) {
     this.addedPostSource.next();
     let body = res.json();
     return body || { };
   }
 
 
-  private handleError (error: Response | any) {
+  public handleError (error: Response | any) {
     // In a real world app, you might use a remote logging infrastructure
     let errMsg: string;
     if (error instanceof Response) {

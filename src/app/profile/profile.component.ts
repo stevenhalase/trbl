@@ -11,7 +11,7 @@ import { AuthService } from '../services/auth/auth.service';
 })
 export class ProfileComponent implements OnInit {
 
-  constructor(private authService:AuthService, private apiService:APIService, private router:Router) { 
+  constructor(public authService:AuthService, public apiService:APIService, public router:Router) { 
     if (!authService.authenticated()) {
       this.router.navigate(['/home']);
     }

@@ -12,18 +12,18 @@ import { AuthFile } from '../../../../auth';
 @Injectable()
 export class AuthService {
 
-  private lock = new Auth0Lock(AuthFile.Auth0Key, AuthFile.Auth0Url, { });
+  public lock = new Auth0Lock(AuthFile.Auth0Key, AuthFile.Auth0Url, { });
   public localUser:any;
   
-  private userLoginSource = new Subject<any>();
-  private userLogoutSource = new Subject<any>();
-  private userUpdateLocalSource = new Subject<any>();
+  public userLoginSource = new Subject<any>();
+  public userLogoutSource = new Subject<any>();
+  public userUpdateLocalSource = new Subject<any>();
 
   userLogin$ = this.userLoginSource.asObservable();
   userLogout$ = this.userLogoutSource.asObservable();
   userUpdateLocal$ = this.userUpdateLocalSource.asObservable();
 
-  constructor(private router: Router) {
+  constructor(public router: Router) {
     this.lock.on("authenticated", (authResult) => {
       this.lock.getUserInfo(authResult.accessToken, (error, profile) => {
         if (error) {

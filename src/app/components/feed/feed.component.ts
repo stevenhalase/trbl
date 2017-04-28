@@ -12,7 +12,7 @@ export class FeedComponent implements OnInit {
 
   public feedPosts: Array<FeedPost>;
 
-  constructor(private apiService:APIService) { 
+  constructor(public apiService:APIService) { 
     this.getFeedPosts();
 
     this.apiService.addedPost$.subscribe(() => {

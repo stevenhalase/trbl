@@ -11,10 +11,10 @@ import { APIService } from '../../services/api/api.service';
 })
 export class NavigationComponent implements OnInit {
 
-  private showMenu: boolean = false;
-  private showSignIn: VisibilityHelper = new VisibilityHelper(false);
+  public showMenu: boolean = false;
+  public showSignIn: VisibilityHelper = new VisibilityHelper(false);
 
-  constructor(private authService: AuthService, private apiService:APIService) { }
+  constructor(public authService: AuthService, public apiService:APIService) { }
 
   ngOnInit() {
   }

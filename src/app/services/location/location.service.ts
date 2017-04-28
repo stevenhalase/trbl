@@ -12,10 +12,10 @@ import { AuthFile } from '../../../../auth';
 @Injectable()
 export class LocationService {
 
-  private geoApiUrl = 'https://api.geocod.io/v1/reverse';
-  private geoKey = AuthFile.GeoKey;
+  public geoApiUrl = 'https://api.geocod.io/v1/reverse';
+  public geoKey = AuthFile.GeoKey;
 
-  constructor(private http: Http) { }
+  constructor(public http: Http) { }
 
   getReverseGeocoding(location:Location): Observable<any> {
     return this.http.get(this.geoApiUrl + '?q=' + location.Latitude + ',' + location.Longitude + '&api_key=' + this.geoKey)
@@ -36,12 +36,12 @@ export class LocationService {
     return promise;
   }
 
-  private extractData(res: Response) {
+  public extractData(res: Response) {
     let body = res.json();
     return body || { };
   }
 
-  private handleError (error: Response | any) {
+  public handleError (error: Response | any) {
     // In a real world app, you might use a remote logging infrastructure
     let errMsg: string;
     if (error instanceof Response) {
