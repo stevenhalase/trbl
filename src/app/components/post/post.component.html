@@ -1,5 +1,5 @@
 <div class="app-post">
-  <div class="card" (mouseover)="this.postSelected = true" (mouseleave)="this.postSelected = false">
+  <div class="card" (mouseover)="this.fireMouseEnter()" (mouseleave)="this.fireMouseLeave()" [ngClass]="{'is-loading-custom': this.submittingPost === true}">
     <div class="card-content" [ngClass]="{'post-selected': this.postSelected}">
       <div class="media">
         <div class="media-left">

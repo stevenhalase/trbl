@@ -13,6 +13,8 @@ import { Location } from '../../helpers/location-helper';
 })
 export class PostComponent implements OnInit {
 
+  public submittingPost:Boolean = false;
+  public leaveTimer:any;
   private postSelected:Boolean = false;
   private location:Location = new Location(0,0,'','');
   private feedPost:FeedPost = new FeedPost(new Date(), this.apiService.user, new Location(0,0), '', '', [], [], []);
@@ -27,6 +29,7 @@ export class PostComponent implements OnInit {
   }
 
   submitPost() {
+    this.submittingPost = true;
     this.feedPost.Date = new Date();
     this.locationService.getLocation().then(location => {
         this.locationService.getReverseGeocoding(location).subscribe(reverseGeocode => {
@@ -35,9 +38,21 @@ export class PostComponent implements OnInit {
 
         this.apiService.createFeedPost(this.feedPost).subscribe(returnFeedPost => {
           this.feedPost = new FeedPost(new Date(), this.apiService.user, new Location(0,0), '', '', [], [], []);
+          this.submittingPost = false;
         });
       });
     });
+  }
+
+  fireMouseEnter() {
+    clearTimeout(this.leaveTimer);
+    this.postSelected = true;
+  }
+
+  fireMouseLeave() {
+    this.leaveTimer = setTimeout(() => {
+      this.postSelected = false
+    },500);
   }
 
 }

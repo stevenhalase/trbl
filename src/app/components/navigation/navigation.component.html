@@ -7,7 +7,7 @@
         <a class="nav-item is-tab is-hidden-mobile">Contact</a>
       </div>
       <div class="nav-center">
-        <a class="nav-item">
+        <a class="nav-item" routerLink="/home">
           <span class="nav-logo">TRBL.</span>
         </a>
       </div>
@@ -21,14 +21,13 @@
         <a class="nav-item is-tab is-hidden-tablet">About</a>
         <a class="nav-item is-tab is-hidden-tablet">Contact</a>
         <a class="nav-item is-tab profile-image-item" routerLink="/profile" routerLinkActive="is-active">
-          <figure class="profile-image" *ngIf="apiService.user.ProfileImage !== ''">
-            <img src="{{apiService.user.ProfileImage}}">
+          <figure class="profile-image" *ngIf="this.apiService.user.ProfileImage !== ''">
+            <img src="{{this.apiService.user.ProfileImage}}">
           </figure>
         </a>
-        <a class="nav-item is-tab" (click)="authService.login()" *ngIf="!authService.authenticated()">Sign In</a>
-        <a class="nav-item is-tab" (click)="authService.logout()" *ngIf="authService.authenticated()">Sign Out</a>
+        <a class="nav-item is-tab" (click)="this.authService.login()" *ngIf="!this.authService.authenticated()">Sign In</a>
+        <a class="nav-item is-tab" (click)="this.authService.logout()" *ngIf="this.authService.authenticated()">Sign Out</a>
       </div>
     </div>
   </nav>
-  <!--<app-sign-in [showSignIn]="this.showSignIn"></app-sign-in>-->
 </div>

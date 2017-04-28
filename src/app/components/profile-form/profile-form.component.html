@@ -1,68 +1,83 @@
 <div class="app-profile-form">
-  <div class="level">
-    <div class="level-item">
-      <p class="title is-2">Profile</p>
-    </div>
-    <div class="level-item">
-      <p class="control save-btn" (click)="saveProfile()">
-        <a class="button is-primary is-medium">
-          Save changes
-        </a>
+  <div class="card">
+    <header class="card-header">
+      <p class="card-header-title">
+        Profile
       </p>
+    </header>
+    <div class="card-content">
+      <div class="media">
+        <div class="media-left">
+          <figure class="image is-48x48">
+            <img src="{{this.apiService.user.ProfileImage}}" alt="Image">
+          </figure>
+        </div>
+        <div class="media-content">
+          <p class="title is-4">{{this.apiService.user.FirstName}} {{this.apiService.user.LastName}}</p>
+          <p class="subtitle is-6">{{this.apiService.user.Alias}}</p>
+        </div>
+      </div>
+      <div class="content">
+        <div class="field is-inverted is-outlined">
+          <label class="label">User Name</label>
+          <p class="control">
+            <input class="input" type="text" [(ngModel)]="this.apiService.user.Alias">
+          </p>
+        </div>
+        <div class="field">
+          <label class="label">First Name</label>
+          <p class="control">
+            <input class="input" type="text" [(ngModel)]="this.apiService.user.FirstName">
+          </p>
+        </div>
+        <div class="field">
+          <label class="label">Last Name</label>
+          <p class="control">
+            <input class="input" type="text" [(ngModel)]="this.apiService.user.LastName">
+          </p>
+        </div>
+        <div class="field">
+          <label class="label">Age</label>
+          <p class="control">
+            <input class="input" type="number" [(ngModel)]="this.apiService.user.Age">
+          </p>
+        </div>
+        <div class="field">
+          <label class="label">Birth Date</label>
+          <p class="control">
+            <input class="input" type="date" [ngModel]="this.apiService.user.BirthDate | date:'yyyy-MM-dd'" (ngModelChange)="this.apiService.user.BirthDate = $event">
+          </p>
+        </div>
+        <div class="field">
+          <label class="label">Profile Image</label>
+          <p class="control">
+            <input class="input" type="url" [(ngModel)]="this.apiService.user.ProfileImage">
+          </p>
+        </div>
+        <div class="field">
+          <label class="label">Cover Image</label>
+          <p class="control">
+            <input class="input" type="url" [(ngModel)]="this.apiService.user.CoverImage">
+          </p>
+        </div>
+        <div class="field has-addons">
+          <p class="control" [ngClass]="{'is-loading': this.gettingLocation === true}">
+            <input class="input" type="text" placeholder="Location" [ngModel]="this.apiService.user.Location.City" disabled>
+          </p>
+          <p class="control">
+            <a class="button is-primary" (click)="this.getLocation()" [ngClass]="{'is-loading': this.gettingLocation === true}">
+              Use My Location
+            </a>
+          </p>
+        </div>
+      </div>
+      <footer class="card-footer">
+        <p class="control save-btn" (click)="saveProfile()">
+          <a class="button is-primary is-medium" [ngClass]="{'is-loading': this.savingProfile === true}">
+            Save changes
+          </a>
+        </p>
+      </footer>
     </div>
-  </div>
-  <div class="field is-inverted is-outlined">
-    <label class="label">User Name</label>
-    <p class="control">
-      <input class="input" type="text" [(ngModel)]="this.apiService.user.Alias">
-    </p>
-  </div>
-  <div class="field">
-    <label class="label">First Name</label>
-    <p class="control">
-      <input class="input" type="text" [(ngModel)]="this.apiService.user.FirstName">
-    </p>
-  </div>
-  <div class="field">
-    <label class="label">Last Name</label>
-    <p class="control">
-      <input class="input" type="text" [(ngModel)]="this.apiService.user.LastName">
-    </p>
-  </div>
-  <div class="field">
-    <label class="label">Age</label>
-    <p class="control">
-      <input class="input" type="number" [(ngModel)]="this.apiService.user.Age">
-    </p>
-  </div>
-  <div class="field">
-    <label class="label">Birth Date</label>
-    <p class="control">
-      <input class="input" type="date" [(ngModel)]="this.apiService.user.BirthDate">
-    </p>
-  </div>
-  <div class="field">
-    <label class="label">Profile Image</label>
-    <p class="control">
-      <input class="input" type="url" [(ngModel)]="this.apiService.user.ProfileImage">
-    </p>
-  </div>
-  <div class="field">
-    <label class="label">Cover Image</label>
-    <p class="control">
-      <input class="input" type="url" [(ngModel)]="this.apiService.user.CoverImage">
-    </p>
-  </div>
-  <div class="field has-addons">
-    <p class="control" [ngClass]="{'is-loading': this.gettingLocation === true}">
-      <input class="input" type="text" placeholder="Location" [ngModel]="this.apiService.user.Location.City" disabled>
-    </p>
-    <p class="control">
-
-      <a class="button is-primary is-loading" *ngIf="this.gettingLocation === true">Loading</a>
-      <a class="button is-primary" (click)="this.getLocation()" *ngIf="this.gettingLocation === false">
-        Use My Location
-      </a>
-    </p>
   </div>
 </div>

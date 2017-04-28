@@ -11,7 +11,7 @@ import { LocationService } from '../../services/location/location.service';
 export class ProfileFormComponent implements OnInit {
 
   public gettingLocation:Boolean = false;
-
+  public savingProfile:Boolean = false;
   constructor(private apiService:APIService, private locationService:LocationService) {
   }
 
@@ -31,9 +31,16 @@ export class ProfileFormComponent implements OnInit {
   }
 
   saveProfile() {
+    this.savingProfile = true;
     this.apiService.updateUser(this.apiService.user.Auth0Id, this.apiService.user).subscribe(returnUser => {
       this.apiService.user = returnUser;
+      localStorage.setItem('profile', JSON.stringify(this.apiService.user));
+      this.savingProfile = false;
     })
+  }
+
+  parseDate() {
+    console.log('yep')
   }
 
 }

@@ -40,3 +40,40 @@
   max-height: 40px;
   transition: all .25s ease-in-out;
 }
+
+.is-loading-custom:after {
+  -webkit-animation: spinAround 500ms infinite linear;
+    animation: spinAround 500ms infinite linear;
+    border: 2px solid #FFF;
+    border-radius: 290486px;
+    border-right-color: transparent;
+    border-top-color: transparent;
+    content: "";
+    display: block;
+    height: 3em;
+    width: 3em;
+    left: 45%;
+    margin-left: -0.5em;
+    margin-top: -0.5em;
+    top: 40%;
+    transform: translate(-50%,-50%);
+    z-index: 1;
+    position: absolute !important;
+}
+
+.is-loading-custom:before {
+    content: "";
+    display: block;
+    height: 100%;
+    position: relative;
+    width: 100%;
+    position: absolute !important;
+    left: 0;
+    top: 0;
+    z-index: 1;
+    background-color: rgba(0,0,0,0.1);
+}
+
+.is-loading-custom {
+  pointer-events: none;
+}

@@ -1,6 +1,6 @@
 .app-home {
   width: 100vw;
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -13,6 +13,7 @@
 
 .app-home .feed-container {
   width: 50vw;
-  height: calc(100vh - 52px);
+  min-height: calc(100vh - 52px);
   margin-top: 82px;
+  margin-bottom: 50px;
 }

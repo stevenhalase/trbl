@@ -2,7 +2,11 @@
 
 }
 
-.app-feed .card-footer .content {
-  width: 100%;
-  padding-top: 10px;
+.app-feed .card {
+  border-top: 1px solid #d0d0d0;
+  border-bottom: 1px solid #d0d0d0;
+}
+
+.app-feed .card .tag-container {
+  margin-top: 20px;
 }

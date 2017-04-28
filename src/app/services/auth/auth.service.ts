@@ -17,13 +17,13 @@ export class AuthService {
   
   private userLoginSource = new Subject<any>();
   private userLogoutSource = new Subject<any>();
+  private userUpdateLocalSource = new Subject<any>();
 
   userLogin$ = this.userLoginSource.asObservable();
   userLogout$ = this.userLogoutSource.asObservable();
+  userUpdateLocal$ = this.userUpdateLocalSource.asObservable();
 
   constructor(private router: Router) {
-    this.localUser = JSON.parse(localStorage.getItem('profile'));
-
     this.lock.on("authenticated", (authResult) => {
       this.lock.getUserInfo(authResult.accessToken, (error, profile) => {
         if (error) {
@@ -36,6 +36,12 @@ export class AuthService {
         this.userLoginSource.next(localUser)
       });
     });
+
+
+    this.localUser = JSON.parse(localStorage.getItem('profile'));
+    setTimeout(() => {
+      this.userUpdateLocalSource.next(this.localUser);
+    },50);
    }
 
    public updateUser() {

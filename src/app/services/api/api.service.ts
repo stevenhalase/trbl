@@ -23,16 +23,22 @@ export class APIService {
   addedPost$ = this.addedPostSource.asObservable();
 
   constructor(private http: Http, private authService:AuthService) {
+    this.authService.userUpdateLocal$.subscribe(user => {
+      this.user = user;
+    })
+
     this.authService.userLogin$.subscribe(localUser => {
       this.user = new User('', localUser.user_id, localUser.name, '', '', 0, new Date(), new Location(0,0), localUser.picture, '');
       this.getUser(localUser.user_id).subscribe(returnUser => {
         if (!returnUser._id) {
           this.createUser(this.user).subscribe(savedUser => {
             this.user = savedUser;
+            localStorage.setItem('profile', JSON.stringify(this.user));
             this.userUpdateSource.next(this.user);
           })
         } else {
           this.user = returnUser;
+          localStorage.setItem('profile', JSON.stringify(this.user));
           this.userUpdateSource.next(this.user);
         }
       })

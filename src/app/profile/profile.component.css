@@ -1,6 +1,6 @@
 .app-profile {
   width: 100vw;
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -9,4 +9,11 @@
   background: linear-gradient(to top, #135058, #F1F2B5); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   font-family: 'Roboto', sans-serif;
   align-items: center;
+}
+
+.app-profile .profile-container {
+  width: 50vw;
+  min-height: calc(100vh - 52px);
+  margin-top: 82px;
+  margin-bottom: 50px;
 }

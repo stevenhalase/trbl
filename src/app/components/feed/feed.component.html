@@ -1,6 +1,11 @@
 <div class="app-feed">
   <div class="feed-container">
     <div class="card" *ngFor="let feedPost of this.feedPosts">
+      <header class="card-header">
+        <p class="card-header-title">
+          {{feedPost.Title}}
+        </p>
+      </header>
       <div class="card-content">
         <div class="media">
           <div class="media-left">
@@ -15,19 +20,15 @@
         </div>
         <div class="content">
           {{feedPost.Content}}
-        </div>
-        <footer class="card-footer">
-          <div class="content">
-            <div class="level">
-              <div class="level-item">
-                <small>{{feedPost.Date | date:'medium'}}</small>
-              </div>
-              <div class="level-item">
-                <small>{{feedPost.Location.City}}, {{feedPost.Location.State}}</small>
-              </div>
-            </div>
+          <div class="tag-container">
+            <span class="tag">
+              <small>{{feedPost.Date | date:'medium'}}</small>
+            </span>
+            <span class="tag">
+              <small>{{feedPost.Location.City}}, {{feedPost.Location.State}}</small>
+            </span>
           </div>
-        </footer>
+        </div>
       </div>
     </div>
   </div>
