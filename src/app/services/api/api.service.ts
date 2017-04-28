@@ -14,7 +14,7 @@ import { AuthService } from '../auth/auth.service';
 export class APIService {
 
   // public apiUrl = 'http://localhost:8080';
-  public apiUrl = 'https://trbl-api.herokuapp.com/';
+  public apiUrl = 'https://trbl-api.herokuapp.com';
   public user:User = new User('', '','','','',0,new Date(), new Location(0,0),'','')
 
   public userUpdateSource = new Subject<User>();
