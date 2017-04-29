@@ -1,0 +1,32 @@
+.app-hero {
+  width: 100vw;
+}
+
+.app-hero .hero {
+  height: calc(100vh);
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100vw;
+}
+
+.app-hero .hero-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.app-hero .hero-body .subtitle {
+  max-width: 570px;
+  margin: 0 auto;
+  margin-bottom: 40px;
+}
+
+.app-hero .hero-body .title {
+  font-size: 65px;
+  font-family: 'Permanent Marker', cursive;
+}
+
+.heropanel--video {
+  min-height:500px;
+}

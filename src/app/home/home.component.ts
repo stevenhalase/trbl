@@ -10,9 +10,12 @@ import { AuthService } from '../services/auth/auth.service';
 })
 export class HomeComponent implements OnInit {
 
+  public peopleListOpen: Boolean;
+
   constructor(public apiService:APIService, public authService:AuthService) { }
 
   ngOnInit() {
   }
+
 
 }

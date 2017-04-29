@@ -13,8 +13,8 @@ import { AuthService } from '../auth/auth.service';
 @Injectable()
 export class APIService {
 
-  // public apiUrl = 'http://localhost:8080';
-  public apiUrl = 'https://trbl-api.herokuapp.com';
+  public apiUrl = 'http://localhost:8080';
+  // public apiUrl = 'https://trbl-api.herokuapp.com';
   public user:User = new User('', '','','','',0,new Date(), new Location(0,0),'','')
 
   public userUpdateSource = new Subject<User>();
@@ -83,6 +83,12 @@ export class APIService {
     return this.http.post(this.apiUrl + '/feedposts/', feedPost)
                     .map(this.extractFeedData, this)
                     .catch(this.handleError)
+  }
+
+  updateFeedPost(feedPostID:String, feedPost:FeedPost): Observable<FeedPost> {
+    return this.http.put(this.apiUrl + '/feedposts/' + feedPostID, feedPost)
+                    .map(this.extractData)
+                    .catch(this.handleError);
   }
 
   getPeople(lat:Number, lng:Number): Observable<User[]> {

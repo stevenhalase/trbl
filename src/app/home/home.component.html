@@ -1,15 +1,18 @@
 <div class="app-home">
-  <app-navigation></app-navigation>
   <div *ngIf="!authService.authenticated()">
-    <app-logo></app-logo>
-    <app-sign-up></app-sign-up>
+    <div class="hero-container">
+      <app-hero></app-hero>
+    </div>
   </div>
   <div *ngIf="authService.authenticated()">
+    <app-navigation></app-navigation>
     <div class="feed-container">
       <app-post></app-post>
+      <app-distance-filter-tabs></app-distance-filter-tabs>
       <app-feed></app-feed>
     </div>
-    <div class="people-list-container">
+    <div class="people-list-container" (click)="this.peopleListOpen = !this.peopleListOpen" 
+      [ngClass]="{'people-list-open': this.peopleListOpen}">
       <app-people-list></app-people-list>
     </div>
   </div>

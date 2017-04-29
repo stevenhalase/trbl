@@ -4,7 +4,7 @@
       <div class="nav-left">
         <a class="nav-item is-tab is-hidden-mobile" routerLink="/home" routerLinkActive="is-active">Home</a>
         <a class="nav-item is-tab is-hidden-mobile">About</a>
-        <a class="nav-item is-tab is-hidden-mobile">Contact</a>
+        <a class="nav-item is-tab is-hidden-mobile">Team</a>
       </div>
       <div class="nav-center">
         <a class="nav-item" routerLink="/home">
@@ -17,11 +17,11 @@
         <span></span>
       </span>
       <div class="nav-right nav-menu" [ngClass]="{'is-active': this.showMenu}">
-        <a class="nav-item is-tab is-hidden-tablet is-active">Test</a>
+        <a class="nav-item is-tab is-hidden-tablet" routerLink="/home" routerLinkActive="is-active">Home</a>
         <a class="nav-item is-tab is-hidden-tablet">About</a>
-        <a class="nav-item is-tab is-hidden-tablet">Contact</a>
+        <a class="nav-item is-tab is-hidden-tablet">Team</a>
         <a class="nav-item is-tab profile-image-item" routerLink="/profile" routerLinkActive="is-active">
-          <figure class="profile-image" *ngIf="this.apiService.user !== null && this.apiService.user.ProfileImage !== ''">
+          <figure class="profile-image" *ngIf="this.apiService.user !== null && this.apiService.user.ProfileImage !== '' && this.authService.authenticated()">
             <img src="{{this.apiService.user.ProfileImage}}">
           </figure>
         </a>

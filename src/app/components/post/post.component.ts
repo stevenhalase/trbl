@@ -22,6 +22,8 @@ export class PostComponent implements OnInit {
   constructor(public apiService:APIService, public locationService:LocationService) {
     this.apiService.userUpdate$.subscribe(updatedUser => {
       this.feedPost.User = updatedUser;
+      this.feedPost.Location.Latitude = this.feedPost.User.Location.Latitude;
+      this.feedPost.Location.Longitude = this.feedPost.User.Location.Longitude;
     })
   }
 

@@ -15,6 +15,11 @@ export class LocationService {
   public geoApiUrl = 'https://api.geocod.io/v1/reverse';
   public geoKey = AuthFile.GeoKey;
 
+  public filter: Number = 10;
+
+  public filterChangedSource = new Subject<any>();
+  filterChangedSource$ = this.filterChangedSource.asObservable();
+
   constructor(public http: Http) { }
 
   getReverseGeocoding(location:Location): Observable<any> {
@@ -53,6 +58,11 @@ export class LocationService {
     }
     console.error(errMsg);
     return Observable.throw(errMsg);
+  }
+
+  setFilter(distance:Number) {
+    this.filter = distance;
+    this.filterChangedSource.next();
   }
 
 }

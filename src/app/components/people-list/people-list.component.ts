@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { APIService } from '../../services/api/api.service';
 import { AuthService } from '../../services/auth/auth.service';
+import { LocationService } from '../../services/location/location.service';
 import { User } from '../../helpers/user-helper';
 
 @Component({
@@ -11,10 +12,9 @@ import { User } from '../../helpers/user-helper';
 })
 export class PeopleListComponent implements OnInit {
 
-  public peopleList:User[];
-  public filter:Number = 10;
+  public peopleList:User[] = [];
 
-  constructor(public apiService:APIService, public authService:AuthService) { 
+  constructor(public apiService:APIService, public authService:AuthService, public locationService:LocationService) { 
     this.authService.userUpdateLocal$.subscribe(user => {
       if (user.Location && user.Location && user.Location.Latitude && user.Location.Longitude) {
         this.getPeople();
@@ -22,7 +22,7 @@ export class PeopleListComponent implements OnInit {
     })
 
     setTimeout(() => {
-      if (!this.peopleList) {
+      if (this.peopleList.length === 0) {
         this.getPeople();
       }
     },50)
@@ -35,5 +35,9 @@ export class PeopleListComponent implements OnInit {
     this.apiService.getPeople(this.apiService.user.Location.Latitude, this.apiService.user.Location.Longitude).subscribe(peopleList => {
       this.peopleList = peopleList;
     })
+  }
+
+  setFilter(distance:Number) {
+    this.locationService.setFilter(distance);
   }
 }

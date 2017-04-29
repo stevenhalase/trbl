@@ -7,7 +7,8 @@ import { APIService } from './services/api/api.service';
 import { AuthService } from './services/auth/auth.service';
 import { LocationService } from './services/location/location.service';
 
-import { PeopleDistanceFilterPipe } from './pipes/people-distance-filter/people-distance-filter.pipe';
+import { DistanceFilterPipe } from './pipes/distance-filter/distance-filter.pipe';
+import { OrderByDatePipe } from './pipes/order-by-date/order-by-date.pipe';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -22,6 +23,9 @@ import { FeedComponent } from './components/feed/feed.component';
 import { ProfileFormComponent } from './components/profile-form/profile-form.component';
 import { PostComponent } from './components/post/post.component';
 import { PeopleListComponent } from './components/people-list/people-list.component';
+import { StaticMapComponent } from './components/static-map/static-map.component';
+import { HeroComponent } from './components/hero/hero.component';
+import { DistanceFilterTabsComponent } from './components/distance-filter-tabs/distance-filter-tabs.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +41,11 @@ import { PeopleListComponent } from './components/people-list/people-list.compon
     ProfileFormComponent,
     PostComponent,
     PeopleListComponent,
-    PeopleDistanceFilterPipe
+    DistanceFilterPipe,
+    OrderByDatePipe,
+    StaticMapComponent,
+    HeroComponent,
+    DistanceFilterTabsComponent
   ],
   imports: [
     BrowserModule,

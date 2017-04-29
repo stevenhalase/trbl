@@ -10,3 +10,19 @@
 .app-feed .card .tag-container {
   margin-top: 20px;
 }
+
+.app-feed .card .card-footer .likes,
+.app-feed .card .card-footer .comments {
+  color: #4a4a4a;
+  font-size: 10px;
+  margin-left: 10px;
+}
+
+.app-feed .card .card-footer .likes:hover,
+.app-feed .card .card-footer .comments:hover {
+  color: #4a4a4a;
+}
+
+.app-feed .action-disable {
+  pointer-events: none;
+}

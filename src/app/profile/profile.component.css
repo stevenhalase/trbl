@@ -17,3 +17,9 @@
   margin-top: 82px;
   margin-bottom: 50px;
 }
+
+@media (max-width: 1200px) {
+  .app-profile .profile-container {
+    width: 90vw;
+  }
+}

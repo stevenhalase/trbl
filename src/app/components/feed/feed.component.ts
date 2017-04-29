@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { APIService } from '../../services/api/api.service';
+import { LocationService } from '../../services/location/location.service';
 import { FeedPost } from '../../helpers/feedPost-helper';
 
 @Component({
@@ -10,9 +11,9 @@ import { FeedPost } from '../../helpers/feedPost-helper';
 })
 export class FeedComponent implements OnInit {
 
-  public feedPosts: Array<FeedPost>;
+  public feedPosts: Array<FeedPost> = [];
 
-  constructor(public apiService:APIService) { 
+  constructor(public apiService:APIService, public locationService:LocationService) { 
     this.getFeedPosts();
 
     this.apiService.addedPost$.subscribe(() => {
@@ -28,6 +29,33 @@ export class FeedComponent implements OnInit {
       this.feedPosts = returnFeedPosts;
       this.expandUserData();
     })
+  }
+
+  addLike(feedPost:FeedPost) {
+    feedPost.Likes.push({
+      User: this.apiService.user,
+      Date: new Date()
+    })
+    this.apiService.updateFeedPost(feedPost._id, feedPost).subscribe(returnFeedPost => {
+      feedPost = returnFeedPost;
+    })
+  }
+
+  addComment() {
+
+  }
+
+  share() {
+
+  }
+
+  actionComplete(feedPost:FeedPost): Boolean {
+    for (let like of feedPost.Likes) {
+      if (like.User._id === this.apiService.user._id) {
+        return true;
+      }
+    }
+    return false;
   }
 
   expandUserData() {

@@ -1,0 +1,11 @@
+<div class="app-distance-filter-tabs">
+  <div class="tabs is-centered">
+    <ul>
+      <li [ngClass]="{'is-active': this.locationService.filter === 10}"><a (click)="this.setFilter(10)">All</a></li>
+      <li [ngClass]="{'is-active': this.locationService.filter === 7}"><a (click)="this.setFilter(7)">7</a></li>
+      <li [ngClass]="{'is-active': this.locationService.filter === 5}"><a (click)="this.setFilter(5)">5</a></li>
+      <li [ngClass]="{'is-active': this.locationService.filter === 3}"><a (click)="this.setFilter(3)">3</a></li>
+      <li [ngClass]="{'is-active': this.locationService.filter === 1}"><a (click)="this.setFilter(1)">1</a></li>
+    </ul>
+  </div>
+</div>
