@@ -38,10 +38,12 @@ export class AuthService {
     });
 
 
-    this.localUser = JSON.parse(localStorage.getItem('profile'));
-    setTimeout(() => {
-      this.userUpdateLocalSource.next(this.localUser);
-    },50);
+    if (this.authenticated()) {
+      this.localUser = JSON.parse(localStorage.getItem('profile'));
+      setTimeout(() => {
+        this.userUpdateLocalSource.next(this.localUser);
+      },50);
+    }
    }
 
    public updateUser() {

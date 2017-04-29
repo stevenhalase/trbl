@@ -7,6 +7,8 @@ import { APIService } from './services/api/api.service';
 import { AuthService } from './services/auth/auth.service';
 import { LocationService } from './services/location/location.service';
 
+import { PeopleDistanceFilterPipe } from './pipes/people-distance-filter/people-distance-filter.pipe';
+
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
@@ -19,6 +21,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { FeedComponent } from './components/feed/feed.component';
 import { ProfileFormComponent } from './components/profile-form/profile-form.component';
 import { PostComponent } from './components/post/post.component';
+import { PeopleListComponent } from './components/people-list/people-list.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +35,9 @@ import { PostComponent } from './components/post/post.component';
     ProfileComponent,
     FeedComponent,
     ProfileFormComponent,
-    PostComponent
+    PostComponent,
+    PeopleListComponent,
+    PeopleDistanceFilterPipe
   ],
   imports: [
     BrowserModule,

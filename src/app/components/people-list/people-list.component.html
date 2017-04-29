@@ -1,0 +1,28 @@
+<div class="app-people-list">
+  <nav class="panel">
+    <p class="panel-heading">
+      People
+    </p>
+    <div class="panel-block">
+      <p class="control has-icons-left">
+        <input class="input is-small" type="text" placeholder="Search">
+        <span class="icon is-small is-left">
+          <i class="fa fa-search"></i>
+        </span>
+      </p>
+    </div>
+    <p class="panel-tabs">
+      <a (click)="this.filter = 10" [ngClass]="{'is-active': this.filter === 10}">All</a>
+      <a (click)="this.filter = 7" [ngClass]="{'is-active': this.filter === 7}"><7</a>
+      <a (click)="this.filter = 5" [ngClass]="{'is-active': this.filter === 5}"><5</a>
+      <a (click)="this.filter = 3" [ngClass]="{'is-active': this.filter === 3}"><3</a>
+      <a (click)="this.filter = 1" [ngClass]="{'is-active': this.filter === 1}"><1</a>
+    </p>
+    <a class="panel-block" *ngFor="let person of this.peopleList | peopleDistanceFilter:this.filter">
+      <figure class="profile-image" *ngIf="person !== null && person.ProfileImage !== ''">
+        <img src="{{person.ProfileImage}}">
+      </figure>
+      <span class="person-name">{{person.Alias}}</span>
+    </a>
+  </nav>
+</div>

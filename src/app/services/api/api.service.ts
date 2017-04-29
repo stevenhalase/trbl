@@ -85,6 +85,12 @@ export class APIService {
                     .catch(this.handleError)
   }
 
+  getPeople(lat:Number, lng:Number): Observable<User[]> {
+    return this.http.get(this.apiUrl + '/users/location?lat=' + lat + '&lng=' + lng)
+                    .map(this.extractData)
+                    .catch(this.handleError);
+  }
+
   public extractData(res: Response) {
     let body = res.json();
     return body || { };

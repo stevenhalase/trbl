@@ -17,3 +17,11 @@
   margin-top: 82px;
   margin-bottom: 50px;
 }
+
+.app-home .people-list-container {
+  width: 20vw;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  height: calc(100vh - 52px);
+}
