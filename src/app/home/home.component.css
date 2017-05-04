@@ -18,25 +18,7 @@
   margin-bottom: 50px;
 }
 
-.app-home .people-list-container {
-  width: 20vw;
-  position: fixed;
-  left: 0;
-  bottom: 0;
-  height: calc(100vh - 52px);
-}
-
 @media (max-width: 1200px) {
-  .app-home .people-list-container {
-    width: 20vw;
-    min-width: 300px;
-    position: fixed;
-    right: 20px;
-    left: auto;
-    bottom: 0;
-    height: 47px;
-    cursor: pointer;
-  }
 
   .app-home .feed-container {
     width: 90vw;
@@ -44,9 +26,4 @@
     margin-top: 82px;
     margin-bottom: 50px;
   }
-}
-
-.app-home .people-list-open {
-  height: auto;
-  box-shadow: 0 0 16px 5px rgba(0,0,0,0.1);
 }

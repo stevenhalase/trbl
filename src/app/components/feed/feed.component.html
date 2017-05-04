@@ -33,16 +33,17 @@
       <footer class="card-footer">
         <a class="card-footer-item" (click)="this.addLike(feedPost)" [ngClass]="{'action-disable': this.actionComplete(feedPost)}">
           <span class="icon is-small">
-            <i class="fa fa-heart" *ngIf="this.actionComplete(feedPost)"></i>
-            <i class="fa fa-heart-o" *ngIf="!this.actionComplete(feedPost)"></i>
+            <i class="fa fa-heart" *ngIf="this.actionComplete(feedPost, 'Likes')"></i>
+            <i class="fa fa-heart-o" *ngIf="!this.actionComplete(feedPost, 'Likes')"></i>
           </span>
           <span class="likes">
             {{feedPost.Likes.length}} Likes
           </span>
         </a>
-        <a class="card-footer-item" (click)="this.addComment()">
+        <a class="card-footer-item" (click)="feedPost.showComments = !feedPost.showComments">
           <span class="icon is-small">
-            <i class="fa fa-comment-o"></i>
+            <i class="fa fa-comment" *ngIf="this.actionComplete(feedPost, 'Comments')"></i>
+            <i class="fa fa-comment-o" *ngIf="!this.actionComplete(feedPost, 'Comments')"></i>
           </span>
           <span class="comments">
             {{feedPost.Comments.length}} Comments
@@ -54,6 +55,43 @@
           </span>
         </a>
       </footer>
+      <div class="comment-block">
+        <article class="media">
+          <figure class="media-left">
+            <p class="image is-24x24">
+              <img src="{{this.apiService.user.ProfileImage}}">
+            </p>
+          </figure>
+          <div class="media-content">
+            <div class="field">
+              <p class="control">
+                <textarea id="{{feedPost._id}}-feedpost-comment" class="feedpost-comment-textarea textarea is-small" placeholder="Add a comment..." 
+                  (keydown)="this.keyDownCheck($event, feedPost)"></textarea>
+              </p>
+            </div>
+          </div>
+        </article>
+      </div>
+      <div class="comments-container" *ngIf="feedPost.showComments">
+        <article class="media" *ngFor="let comment of feedPost.Comments">
+          <figure class="media-left">
+            <p class="image is-24x24">
+              <img src="{{comment.User.ProfileImage}}">
+            </p>
+          </figure>
+          <div class="media-content">
+            <div class="content is-small">
+              <p>
+                <strong>{{comment.User.FirstName}} {{comment.User.LastName}}</strong>
+                <br>
+                {{comment.Content}}
+                <br>
+                <small><a>Like</a> · <a>Reply</a> · 2 hrs</small>
+              </p>
+            </div>
+          </div>
+        </article>
+      </div>
     </div>
   </div>
 </div>

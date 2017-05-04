@@ -9,9 +9,7 @@ import { AuthService } from '../services/auth/auth.service';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-
-  public peopleListOpen: Boolean;
-
+  
   constructor(public apiService:APIService, public authService:AuthService) { }
 
   ngOnInit() {

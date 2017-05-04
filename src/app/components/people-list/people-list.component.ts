@@ -13,6 +13,7 @@ import { User } from '../../helpers/user-helper';
 export class PeopleListComponent implements OnInit {
 
   public peopleList:User[] = [];
+  public peopleListOpen: Boolean;
 
   constructor(public apiService:APIService, public authService:AuthService, public locationService:LocationService) { 
     this.authService.userUpdateLocal$.subscribe(user => {

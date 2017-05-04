@@ -26,3 +26,27 @@
 .app-feed .action-disable {
   pointer-events: none;
 }
+
+.app-feed .comment-block {
+  border-top: 1px solid #dbdbdb;
+  padding: 10px 60px 10px 60px;
+}
+
+.app-feed .comment-block textarea {
+  resize: none;
+  min-height: 30px;
+  height: auto;
+  line-height: 1rem;
+}
+
+.app-feed .comment-block .media-left {
+  margin-top: 3px;
+}
+
+.app-feed .comment-block .comment-open {
+  min-height: 120px;
+}
+
+.app-feed .comments-container {
+  padding: 10px 60px 10px 60px;
+}

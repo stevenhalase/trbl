@@ -4,7 +4,7 @@ export class Location {
   public City: String;
   public State: String;
 
-  constructor(Latitude:Number, Longitude:Number, City:String = '', State:String = '') {
+  constructor(Latitude:Number, Longitude:Number, City?:String, State?:String) {
     this.Latitude = Latitude;
     this.Longitude = Longitude;
     this.City = City;

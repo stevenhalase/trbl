@@ -1,6 +1,6 @@
-<div class="app-people-list">
+<div class="app-people-list" [ngClass]="{'people-list-open': this.peopleListOpen}">
   <nav class="panel">
-    <p class="panel-heading">
+    <p class="panel-heading" (click)="this.peopleListOpen = !this.peopleListOpen">
       People
     </p>
     <div class="panel-block">
