@@ -54,7 +54,6 @@ export class FeedComponent implements OnInit {
   getFeedPosts() {
     this.apiService.getFeedPosts().subscribe(returnFeedPosts => {
       this.feedPosts = returnFeedPosts;
-      this.expandUserData();
     })
   }
 
@@ -75,11 +74,53 @@ export class FeedComponent implements OnInit {
     })
   }
 
+  addCommentLike(comment:Comment, feedPost:FeedPost) {
+    let commentIndex:number = feedPost.Comments.findIndex((element, index, array) => {
+      return element == comment;
+    })
+    feedPost.Comments[commentIndex].Likes.push({
+      User: this.apiService.user,
+      Date: new Date()
+    });
+
+    this.apiService.updateFeedPost(feedPost._id, feedPost).subscribe(returnFeedPost => {
+      feedPost = returnFeedPost;
+    })
+  }
+
+  addCommentReply(commentReply:Comment, comment:Comment, feedPost:FeedPost) {
+    let commentIndex:number = feedPost.Comments.findIndex((element, index, array) => {
+      return element == comment;
+    })
+    feedPost.Comments[commentIndex].Replies.push(commentReply);
+
+    this.apiService.updateFeedPost(feedPost._id, feedPost).subscribe(returnFeedPost => {
+      feedPost = returnFeedPost;
+    })
+  }
+
+  addCommentReplyLike(reply:Comment, comment:Comment, feedPost:FeedPost) {
+    let commentIndex:number = feedPost.Comments.findIndex((element, index, array) => {
+      return element == comment;
+    })
+    let replyIndex:number = feedPost.Comments[commentIndex].Replies.findIndex((element, index, array) => {
+      return element == reply;
+    })
+    feedPost.Comments[commentIndex].Replies[replyIndex].Likes.push({
+      User: this.apiService.user,
+      Date: new Date()
+    });
+
+    this.apiService.updateFeedPost(feedPost._id, feedPost).subscribe(returnFeedPost => {
+      feedPost = returnFeedPost;
+    })
+  }
+
   share() {
 
   }
 
-  actionComplete(feedPost:FeedPost, searchTerm:String): Boolean {
+  actionComplete(feedPost:FeedPost, searchTerm:String, comment:Comment, reply:Comment): Boolean {
     if (searchTerm === 'Likes') {
       for (let like of feedPost.Likes) {
         if (like.User._id === this.apiService.user._id) {
@@ -93,28 +134,48 @@ export class FeedComponent implements OnInit {
           return true;
         }
       }
-    }
-  }
-
-  keyDownCheck(event, feedPost) {
-    if(event.keyCode == 13) {
-      let commentText = (<HTMLInputElement>document.getElementById(feedPost._id + '-feedpost-comment')).value;
-      (<HTMLInputElement>document.getElementById(feedPost._id + '-feedpost-comment')).value = '';
-      let comment = new Comment(this.apiService.user, new Date(), commentText);
-      this.addComment(comment, feedPost);
-    }
-  }
-
-  expandUserData() {
-    for (let feedPost of this.feedPosts) {
-      this.apiService.getUserById(feedPost.User.toString()).subscribe(returnUser => {
-        feedPost.User = returnUser;
-        for (let comment of feedPost.Comments) {
-          this.apiService.getUserById(comment.User.toString()).subscribe(returnUser => {
-            comment.User = returnUser;
-          })
+    } else if (searchTerm === 'Comments-Like') {
+      if (comment.Likes) {
+        for (let like of comment.Likes) {
+          if (like.User === this.apiService.user._id || like.User._id === this.apiService.user._id) {
+            return true;
+          }
         }
-      })
+      }
+    } else if (searchTerm === 'Comments-Reply-Like') {
+      if (reply.Likes) {
+        for (let like of reply.Likes) {
+          if (like.User === this.apiService.user._id || like.User._id === this.apiService.user._id) {
+            return true;
+          }
+        }
+      }
+    }
+  }
+
+  getCommentsTotal(comments:Array<Comment>) {
+    let counter = comments.length;
+    for (let comment of comments) {
+      if (comment.Replies && comment.Replies.length > 0) {
+        counter += comment.Replies.length;
+      }
+    }
+    return counter
+  }
+
+  keyDownCheck(event:any, feedPost:FeedPost, comment?:Comment) {
+    if(event.keyCode == 13) {
+      if (comment) {
+        let commentText = (<HTMLInputElement>document.getElementById(feedPost._id + '-feedpost-comment-reply')).value;
+        (<HTMLInputElement>document.getElementById(feedPost._id + '-feedpost-comment-reply')).value = '';
+        let commentReply = new Comment(this.apiService.user, new Date(), commentText);
+        this.addCommentReply(commentReply, comment, feedPost);
+      } else {
+        let commentText = (<HTMLInputElement>document.getElementById(feedPost._id + '-feedpost-comment')).value;
+        (<HTMLInputElement>document.getElementById(feedPost._id + '-feedpost-comment')).value = '';
+        let comment = new Comment(this.apiService.user, new Date(), commentText);
+        this.addComment(comment, feedPost);
+      }
     }
   }
 

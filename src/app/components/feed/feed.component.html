@@ -22,7 +22,7 @@
           {{feedPost.Content}}
           <div class="tag-container">
             <span class="tag">
-              <small>{{feedPost.Date | date:'medium'}}</small>
+              <small>{{feedPost.Date | messageTime}}</small>
             </span>
             <span class="tag">
               <small>{{feedPost.Location.City}}, {{feedPost.Location.State}}</small>
@@ -31,7 +31,7 @@
         </div>
       </div>
       <footer class="card-footer">
-        <a class="card-footer-item" (click)="this.addLike(feedPost)" [ngClass]="{'action-disable': this.actionComplete(feedPost)}">
+        <a class="card-footer-item" (click)="this.addLike(feedPost)" [ngClass]="{'action-disable': this.actionComplete(feedPost, 'Likes')}">
           <span class="icon is-small">
             <i class="fa fa-heart" *ngIf="this.actionComplete(feedPost, 'Likes')"></i>
             <i class="fa fa-heart-o" *ngIf="!this.actionComplete(feedPost, 'Likes')"></i>
@@ -46,7 +46,7 @@
             <i class="fa fa-comment-o" *ngIf="!this.actionComplete(feedPost, 'Comments')"></i>
           </span>
           <span class="comments">
-            {{feedPost.Comments.length}} Comments
+            {{this.getCommentsTotal(feedPost.Comments)}} Comments
           </span>
         </a>
         <a class="card-footer-item" (click)="this.share()">
@@ -72,7 +72,7 @@
           </div>
         </article>
       </div>
-      <div class="comments-container" *ngIf="feedPost.showComments">
+      <div class="comments-container" *ngIf="feedPost.showComments && feedPost.Comments && feedPost.Comments.length > 0">
         <article class="media" *ngFor="let comment of feedPost.Comments">
           <figure class="media-left">
             <p class="image is-24x24">
@@ -86,8 +86,57 @@
                 <br>
                 {{comment.Content}}
                 <br>
-                <small><a>Like</a> · <a>Reply</a> · 2 hrs</small>
+                <small>
+                  <span class="icon is-small" *ngIf="this.actionComplete(feedPost, 'Comments-Like', comment)">
+                    <i class="fa fa-check-circle" aria-hidden="true"></i>
+                  </span>
+                  <a (click)="this.addCommentLike(comment, feedPost)" [ngClass]="{'action-disable': this.actionComplete(feedPost, 'Likes')}">Like</a> · 
+                  <a (click)="comment.showReply = !comment.showReply">Reply</a> · {{comment.Date | messageTime}}
+                </small>
               </p>
+              <div class="comment-block comment-block-reply" *ngIf="comment.showReply">
+                <article class="media">
+                  <figure class="media-left">
+                    <p class="image is-24x24">
+                      <img src="{{this.apiService.user.ProfileImage}}">
+                    </p>
+                  </figure>
+                  <div class="media-content">
+                    <div class="field">
+                      <p class="control">
+                        <textarea id="{{feedPost._id}}-feedpost-comment-reply" class="feedpost-comment-textarea textarea is-small" placeholder="Add a comment..." 
+                          (keydown)="this.keyDownCheck($event, feedPost, comment)"></textarea>
+                      </p>
+                    </div>
+                  </div>
+                </article>
+              </div>
+            </div>
+            <div class="comments-container comments-replies-container" *ngIf="comment.Replies && comment.Replies.length > 0">
+              <article class="media" *ngFor="let reply of comment.Replies">
+                <figure class="media-left">
+                  <p class="image is-24x24">
+                    <img src="{{reply.User.ProfileImage}}">
+                  </p>
+                </figure>
+                <div class="media-content">
+                  <div class="content is-small">
+                    <p>
+                      <strong>{{reply.User.FirstName}} {{reply.User.LastName}}</strong>
+                      <br>
+                      {{reply.Content}}
+                      <br>
+                      <small>
+                        <span class="icon is-small" *ngIf="this.actionComplete(feedPost, 'Comments-Reply-Like', null, reply)">
+                          <i class="fa fa-check-circle" aria-hidden="true"></i>
+                        </span>
+                        <a (click)="this.addCommentReplyLike(reply, comment, feedPost)"  
+                          [ngClass]="{'action-disable': this.actionComplete(feedPost, 'Comments-Reply-Like', null, reply)}">Like</a> · {{reply.Date | messageTime}}
+                      </small>
+                    </p>
+                  </div>
+                </div>
+              </article>
             </div>
           </div>
         </article>

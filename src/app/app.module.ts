@@ -9,6 +9,7 @@ import { LocationService } from './services/location/location.service';
 
 import { DistanceFilterPipe } from './pipes/distance-filter/distance-filter.pipe';
 import { OrderByDatePipe } from './pipes/order-by-date/order-by-date.pipe';
+import { MessageTimePipe } from './pipes/message-time/message-time.pipe';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -45,7 +46,8 @@ import { DistanceFilterTabsComponent } from './components/distance-filter-tabs/d
     OrderByDatePipe,
     StaticMapComponent,
     HeroComponent,
-    DistanceFilterTabsComponent
+    DistanceFilterTabsComponent,
+    MessageTimePipe
   ],
   imports: [
     BrowserModule,

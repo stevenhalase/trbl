@@ -34,8 +34,8 @@
 
 .app-feed .comment-block textarea {
   resize: none;
-  min-height: 30px;
-  height: auto;
+  min-height: 35px;
+  height: 35px;
   line-height: 1rem;
 }
 
@@ -49,4 +49,34 @@
 
 .app-feed .comments-container {
   padding: 10px 60px 10px 60px;
+}
+
+.app-feed .comments-container .media {
+  border-top: none;
+  padding-top: 0;
+  margin-top: 0;
+  margin-bottom: 15px;
+}
+
+.app-feed .comment-block-reply {
+  padding: 10px 0;
+  border-top: none;
+}
+
+.app-feed .comment-block-reply .media {
+  padding: 0;
+  border-top: none;
+}
+
+.app-feed .comments-replies-container {
+  padding: 10px 0;
+}
+
+.app-feed .comments-replies-container .media{
+  padding: 0;
+  border-top: none;
+}
+
+.card-footer-item.action-disable {
+  pointer-events: none;
 }
